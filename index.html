@@ -5,6 +5,15 @@
 <meta name="description" content="Portfolio of Nick Ysmael Zipagan — denim design direction for Tommy Hilfiger, Gap, American Eagle and Ralph Lauren.">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="./favicon.png">
+<link rel="apple-touch-icon" href="./favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nick Ysmael Zipagan — Denim Design Direction">
+<meta property="og:description" content="Denim design direction for Tommy Hilfiger, Gap, American Eagle and Ralph Lauren.">
+<meta property="og:image" content="https://nick-zipagan-portfolio.vercel.app/share-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -106,7 +115,7 @@
 </header>
 
 <section id="manifesto" style="padding: 128px clamp(20px, 4vw, 48px); width: 100%; display: flex; align-items: center; justify-content: center; border-top: 1px solid #d8d4c9; box-sizing: border-box">
-  <div data-reveal="" style="max-width: 64rem; text-align: center; width: 1023px; height: 480px">
+  <div data-reveal="" style="max-width: 64rem; width: 100%; text-align: center">
     <i class="ph ph-quotes" style="font-size: 36px; color: #d1d5db; margin-bottom: 32px; display: inline-block"></i>
     <h2 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 5vw, 4.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 48px; text-wrap: pretty">
       Denim's next chapter is woven around the lives we lead— where <span style="font-style: italic; color: #6b7280">innovation</span> brings comfort, freedom and authenticity.
@@ -385,7 +394,7 @@
       <span style="flex: 1; height: 1px; background: #45443d"></span>
       
     </div>
-    <a href="mailto:studio@nickysmaelzipagan.com" style="display: block; margin-top: 44px; font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(1.2rem, 3.2vw, 2.8rem); line-height: 1.02; letter-spacing: -0.015em; color: #f4f2ec; transition: color 0.4s, opacity 0.4s" style-hover="color: #ffffff">studio@nickzipagan.com</a>
+    <a href="mailto:studio@nickzipagan.com" style="display: block; margin-top: 44px; font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(1.2rem, 3.2vw, 2.8rem); line-height: 1.02; letter-spacing: -0.015em; color: #f4f2ec; transition: color 0.4s, opacity 0.4s" style-hover="color: #ffffff">studio@nickzipagan.com</a>
     <div style="display: flex; align-items: center; gap: 14px; margin-top: 28px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: #a8a59a">
       <span style="width: 6px; height: 6px; border-radius: 50%; background: #9fa08c"></span>
       <span>LET'S TALK DESIGN</span>
@@ -770,12 +779,14 @@ class Component extends DCLogic {
     if (!ov) return;
     ov.style.display = active ? 'block' : 'none';
     this.fitOverlay(ov);
+    const mobile = this.isMobile();
     let horizontal = false;
     this.cases.forEach((c) => {
       const el = document.querySelector(`[data-case="${c.key}"]`);
       if (!el) return;
       const on = c.key === active;
-      const h = el.hasAttribute('data-case-h');
+      const h = el.hasAttribute('data-case-h') && !mobile;
+      this.setCaseMobile(el, mobile && on);
       el.style.display = on ? (h ? 'flex' : 'block') : 'none';
       if (on && h) horizontal = true;
     });
@@ -810,6 +821,8 @@ class Component extends DCLogic {
     this._t3 = setTimeout(() => this.setState({ curtainPhase: 3 }), 3200);
     window.addEventListener('keydown', this.onKey);
     window.addEventListener('wheel', this.onCaseWheel, { passive: false });
+    window.addEventListener('resize', this.onResize);
+    this._wasMobile = this.isMobile();
     this.applyCase();
     this.applyLayout();
     this.setupReveal();
@@ -826,6 +839,7 @@ class Component extends DCLogic {
   componentWillUnmount() {
     window.removeEventListener('keydown', this.onKey);
     window.removeEventListener('wheel', this.onCaseWheel);
+    window.removeEventListener('resize', this.onResize);
     document.body.style.overflow = '';
     clearTimeout(this._t);
     clearTimeout(this._fallback);
@@ -876,9 +890,84 @@ class Component extends DCLogic {
     this._fallback = setTimeout(() => els.forEach(show), 4000);
   }
 
+  // ---- mobile ----
+  isMobile = () => {
+    try { return window.matchMedia('(max-width: 768px)').matches; } catch (e) { return false; }
+  };
+
+  onResize = () => {
+    const m = this.isMobile();
+    if (m !== this._wasMobile) { this._wasMobile = m; this.forceUpdate(); }
+    else { this.applyLayout(); this.applyCase(); }
+  };
+
+  // Phones get a single-column retelling of each case: the intro block, then the
+  // chapter headings and imagery in document order. The horizontal choreography
+  // depends on a wide viewport and pointer wheel events, neither of which exist here.
+  buildMobileCase(el) {
+    if (el.querySelector('[data-mcase]')) return;
+    const col = document.createElement('div');
+    col.setAttribute('data-mcase', '');
+    col.style.cssText = 'display:flex; flex-direction:column; gap:28px; padding:24px 20px 96px; box-sizing:border-box; width:100%';
+
+    const intro = el.firstElementChild;
+    if (intro) {
+      const clone = intro.cloneNode(true);
+      clone.removeAttribute('style');
+      clone.style.cssText = 'display:flex; flex-direction:column; width:100%';
+      clone.querySelectorAll('*').forEach((n) => {
+        n.style.width = '';
+        n.style.height = '';
+        n.style.maxWidth = '100%';
+        n.style.position = 'static';
+      });
+      col.appendChild(clone);
+    }
+
+    el.querySelectorAll('image-slot, [data-shutter] h3').forEach((node) => {
+      if (node.tagName === 'H3') {
+        const h = document.createElement('div');
+        h.textContent = (node.textContent || '').trim();
+        h.style.cssText = "font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:300; text-transform:uppercase; line-height:1.05; letter-spacing:-0.01em; margin:20px 0 0";
+        if (h.textContent) col.appendChild(h);
+        return;
+      }
+      const src = node.getAttribute('src');
+      if (!src) return;
+      const img = document.createElement('img');
+      img.src = src;
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.alt = '';
+      img.style.cssText = 'display:block; width:100%; height:auto; background:#e8e5dc';
+      col.appendChild(img);
+    });
+
+    Array.from(el.children).forEach((ch) => { ch.setAttribute('data-mhide', ''); });
+    el.appendChild(col);
+  }
+
+  setCaseMobile(el, on) {
+    if (on) {
+      this.buildMobileCase(el);
+      el.style.height = 'auto';
+      el.style.columnGap = '0';
+      el.querySelectorAll('[data-mhide]').forEach((n) => { n.style.display = 'none'; });
+      const col = el.querySelector('[data-mcase]');
+      if (col) col.style.display = 'flex';
+    } else {
+      el.style.height = '';
+      el.style.columnGap = '';
+      el.querySelectorAll('[data-mhide]').forEach((n) => { n.style.display = ''; });
+      const col = el.querySelector('[data-mcase]');
+      if (col) col.style.display = 'none';
+    }
+  }
+
   // ---- projects section layout ----
   applyLayout() {
-    const layout = this.props.projectsLayout ?? 'horizontal';
+    const mobile = this.isMobile();
+    const layout = mobile ? 'stacked' : (this.props.projectsLayout ?? 'horizontal');
     const wrap = document.querySelector('[data-hs-wrapper]');
     const sticky = document.querySelector('[data-hs-sticky]');
     const cont = document.querySelector('[data-hs-container]');
@@ -931,6 +1020,28 @@ class Component extends DCLogic {
         p.style.scrollSnapAlign = 'start';
       });
     }
+
+    // on phones each panel's two-up grid becomes one column.
+    // the authored values live in inline styles, so snapshot cssText before the
+    // first mutation and write it back verbatim — clearing a property would
+    // delete the authored literal, not revert it.
+    panels.forEach((p) => {
+      const g = p.children[1];
+      if (!g) return;
+      const img = Array.from(g.children).find((c) => c.querySelector('image-slot'));
+      const keep = (el) => { if (el && el._css0 == null) el._css0 = el.getAttribute('style') || ''; };
+      keep(p); keep(g); keep(img);
+      if (mobile) {
+        g.style.gridTemplateColumns = 'minmax(0,1fr)';
+        g.style.height = 'auto';
+        g.style.maxHeight = 'none';
+        g.style.gap = '28px';
+        if (img) { img.style.height = '46vh'; img.style.order = '-1'; }
+        p.style.padding = '96px 20px 64px';
+      } else {
+        [p, g, img].forEach((el) => { if (el && el._css0 != null) el.setAttribute('style', el._css0); });
+      }
+    });
   }
 
   // soft shutter-blind reveal: horizontal slats open as the panel enters the
