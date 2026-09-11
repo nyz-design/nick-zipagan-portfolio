@@ -424,6 +424,24 @@
 </footer>
 
 
+<sc-if value="{{ gateOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position: fixed; inset: 0; z-index: 9500; background: #f4f2ec; display: flex; align-items: center; justify-content: center; padding: 24px; box-sizing: border-box">
+    <div style="width: 100%; max-width: 26rem">
+      <p style="font-family: 'Cormorant Garamond', serif; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.4em; color: #9ca3af; margin: 0 0 18px">Protected Work</p>
+      <h2 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(30px, 4vw, 44px); font-weight: 300; line-height: 1.1; margin: 0 0 16px; color: #2a2925">Enter password<br><span style="font-style: italic; color: #6b7280">to view the case studies</span></h2>
+      <p style="font-family: 'Cormorant Garamond', serif; font-size: 17px; color: #6b7280; line-height: 1.6; margin: 0 0 32px">Access stays open for 30 minutes across all four projects.</p>
+      <form onSubmit="{{ submitGate }}" style="display: flex; flex-direction: column; gap: 20px">
+        <input type="password" autoFocus="{{ true }}" onChange="{{ onGatePw }}" placeholder="Password" style="font-family: 'Cormorant Garamond', serif; font-size: 20px; color: #2a2925; background: transparent; border: 0; border-bottom: 1px solid #b9b4a6; padding: 8px 2px; outline: none; width: 100%; box-sizing: border-box">
+        <div style="display: flex; align-items: center; gap: 28px">
+          <button type="submit" style="font-family: 'Cormorant Garamond', serif; width: fit-content; font-size: 12px; text-transform: uppercase; letter-spacing: 0.18em; border-bottom: 1px solid #6b7280; padding-bottom: 4px; color: #2a2925; transition: opacity 0.3s" style-hover="opacity: 0.55">{{ gateBtnLabel }}</button>
+          <button type="button" onClick="{{ closeGate }}" style="font-family: 'Cormorant Garamond', serif; width: fit-content; font-size: 12px; text-transform: uppercase; letter-spacing: 0.18em; color: #9ca3af; transition: color 0.3s" style-hover="color: #2a2925">Cancel</button>
+        </div>
+      </form>
+      <p style="font-family: 'Cormorant Garamond', serif; font-size: 15px; color: #a33a2a; min-height: 1.4em; margin: 20px 0 0">{{ gateError }}</p>
+    </div>
+  </div>
+</sc-if>
+
 <div data-case-overlay="" style="display: none; position: fixed; inset: 0; z-index: 9000; background: #f4f2ec; overflow-y: auto; overscroll-behavior: contain; overflow-y: hidden; padding-top: 46px; box-sizing: border-box; left: -16px; top: 0px">
   <div style="position: fixed; top: 0; left: 0; right: 0; z-index: 40; display: flex; justify-content: space-between; align-items: center; padding: 8px clamp(20px, 4vw, 48px); box-sizing: border-box; background: rgba(244,242,236,0.9); backdrop-filter: blur(12px); border-bottom: 1px solid #d8d4c9">
     <button onClick="{{ closeCase }}" style="display: flex; align-items: center; gap: 12px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; transition: gap 0.3s" style-hover="gap: 20px">
@@ -432,562 +450,7 @@
     <span data-case-counter="" style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #7a776a"></span>
   </div>
 
-  <div data-case="tommy" data-case-h="1" style="display: none; animation: caseIn 0.7s cubic-bezier(0.16,1,0.3,1) both; height: calc(100vh - 46px); align-items: stretch; column-gap: 100px">
-    <div style="flex: 0 0 auto; width: 411px; height: 100%; padding: 5px clamp(24px, 3vw, 56px) 51px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; min-height: 0; overflow-y: auto">
-      <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.3em; color: #7a776a; margin-bottom: 24px; font-weight: 600">Work 01 — Tommy Hilfiger</p>
-      <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 300; text-transform: uppercase; line-height: 0.9; margin-bottom: 40px">Modern<br><span style="font-style: italic; color: #6b7280">Heritage</span></h2>
-      <p style="font-size: 15px; font-weight: 300; color: #4b5563; line-height: 1.8; text-wrap: pretty; max-width: 30rem">Reimagining Tommy Hilfiger as a denim destination- evolving its iconic American heritage through modern product, compelling fit stories, and a cohesive identity across Men's, Women's, and Kids'.</p>
-    </div>
-
-    <div style="flex: 0 0 auto; width: 297px; height: 100%; padding: 5px clamp(24px, 3vw, 56px) 51px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; gap: 40px; min-height: 0; overflow-y: auto">
-      <div><p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #9ca3af; margin-bottom: 8px">Role</p><p style="font-size: 14px; font-weight: 300">Design Direction — Denim</p></div>
-      <div><p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #9ca3af; margin-bottom: 8px">Scope</p><p style="font-size: 14px; font-weight: 300">Men's, Women's, Kids'</p></div>
-      <div><p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #9ca3af; margin-bottom: 8px">Focus</p><p style="font-size: 14px; font-weight: 300">Fit architecture, fabric, identity</p></div>
-    </div>
-
-    <div style="flex: 0 0 auto; width: min(70vw, 1000px); height: 100%; padding: 5px 0 51px; box-sizing: border-box; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 16px">
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-g1" style="width: 100%; height: 100%" src="./opt/tommy-01.webp" shape="rect" placeholder="Image 1"></image-slot></div>
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-g2" style="width: 100%; height: 100%" src="./opt/tommy-02.webp" shape="rect" placeholder="Image 2"></image-slot></div>
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-g3" style="width: 100%; height: 100%" src="./opt/tommy-03.webp" shape="rect" placeholder="Image 3"></image-slot></div>
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-g4" style="width: 100%; height: 100%" src="./opt/tommy-04.webp" shape="rect" placeholder="Image 4"></image-slot></div>
-    </div>
-
-    
-
-    <div style="flex: 0 0 auto; width: min(32vw, 434px); height: 100%; padding: 5px clamp(24px, 3vw, 56px) 51px; box-sizing: border-box; display: flex; align-items: center">
-      <p style="font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 3vw, 2.6rem); font-weight: 300; font-style: italic; line-height: 1.3; text-wrap: pretty">Remapped architecture- fit, fabric, stories across mens, womens, and kids, with a modern Tommy Hilfiger twist while honoring the heritage story of the brand.</p>
-    </div>
-
-    <div style="flex: 0 0 auto; width: 700px; height: 100%; padding: 5px 0 51px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-2" style="width: 100%; height: 100%" src="./opt/tommy-hero.webp" shape="rect" placeholder="Landscape image"></image-slot></div>
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-2b" style="width: 100%; height: 100%" src="./opt/tommy-p11.webp" shape="rect" placeholder="Landscape image"></image-slot></div>
-    </div>
-
-    <div style="flex: 0 0 auto; width: 700px; height: 100%; padding: 5px 0 51px; box-sizing: border-box; display: grid; grid-template-rows: 1fr 1fr; gap: 20px">
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-3" style="width: 100%; height: 100%" src="./opt/tommy-p16.webp" shape="rect" placeholder="Landscape image"></image-slot></div>
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-3b" style="width: 100%; height: 100%" src="./opt/tommy-p12.webp" shape="rect" placeholder="Landscape image"></image-slot></div>
-    </div>
-
-    <div style="flex: 0 0 auto; width: 700px; height: 100%; padding: 5px 0 51px; box-sizing: border-box; display: grid; grid-template-rows: 1fr 1fr; gap: 20px">
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-4" style="width: 100%; height: 100%" src="./opt/tommy-p17.webp" shape="rect" placeholder="Landscape image"></image-slot></div>
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-4b" style="width: 100%; height: 100%" src="./opt/tommy-p13.webp" shape="rect" placeholder="Landscape image"></image-slot></div>
-    </div>
-
-    <div style="flex: 0 0 auto; width: 700px; height: 100%; padding: 5px 0 51px; box-sizing: border-box; display: grid; grid-template-rows: 1fr 1fr; gap: 20px">
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-5" style="width: 100%; height: 100%" src="./opt/tommy-p18.webp" shape="rect" placeholder="Landscape image"></image-slot></div>
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-5b" style="width: 100%; height: 100%" src="./opt/tommy-p18b.webp" shape="rect" placeholder="Landscape image"></image-slot></div>
-    </div>
-
-    <div data-shutter="1" style="flex: 0 0 auto; width: 314px; height: 100%; padding: 5px 0 51px; box-sizing: border-box">
-      <div style="width: 284px; height: 100%; background: #d4d0c5; color: #2a2925; padding: clamp(16px, 4.4vh, 64px) clamp(22px, 5vw, 80px); box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden">
-        <div style="position: absolute; right: -40px; bottom: -80px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(150px, 42vh, 380px); line-height: 0.7; color: #2a2925; opacity: 0.09; pointer-events: none; user-select: none">03</div>
-        <div style="display: flex; align-items: center; gap: 16px; position: relative; z-index: 2">
-          <div style="width: 56px; height: 1px; background: #2a2925"></div>
-          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.34em; color: #7a776a; margin: 0; font-weight: 600">Chapter 03</p>
-        </div>
-        <div style="position: relative; z-index: 2">
-          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 3.3vh, 27px); font-weight: 300; text-transform: uppercase; line-height: 0.86; letter-spacing: -0.02em; margin: 0">Seasonal<br><span style="font-style: italic; color: #6b7280; width: 183px; height: 74px; display: inline-block">Women's Line Assortment</span></h3>
-        </div>
-        <div style="display: flex; flex-direction: column; align-items: stretch; gap: 10px; position: relative; z-index: 2">
-          <p style="font-size: clamp(10.5px, 1.85vh, 15px); font-weight: 300; color: #4b5563; line-height: 1.55; text-wrap: pretty; max-width: 26rem; margin: 0">Full seasonal assortment mapped across fits, washes and price tiers.</p>
-          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #7a776a; margin: 0; white-space: nowrap">DENIM RELAUNCH</p>
-        </div>
-      </div>
-    </div>
-
-    <div style="flex: 0 0 auto; width: 4180px; height: 100%; padding: 5px 0 51px; box-sizing: border-box; display: grid; grid-template-columns: repeat(7, 580px); grid-template-rows: 55px 1fr 1fr; gap: 20px">
-      <div data-shutter="1" style="grid-row: 1; grid-column: 1 / span 7; min-height: 0">
-        <div style="width: 100%; height: 100%; background: #d4d0c5; color: #2a2925; padding: 16px clamp(24px, 3vw, 48px); box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; gap: 40px; position: relative; overflow: hidden">
-          <div style="position: absolute; right: -20px; bottom: -60px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 160px; line-height: 0.7; color: #2a2925; opacity: 0.09; pointer-events: none; user-select: none">03</div>
-          <div style="display: flex; align-items: center; gap: 16px; position: relative; z-index: 2">
-            <div style="width: 56px; height: 1px; background: #2a2925"></div>
-            <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.34em; color: #7a776a; margin: 0; font-weight: 600">Chapter 03</p>
-          </div>
-          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 300; text-transform: uppercase; line-height: 0.9; letter-spacing: -0.01em; margin: 0; position: relative; z-index: 2">Seasonal <span style="font-style: italic; color: #6b7280">Line Assortment</span></h3>
-          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #7a776a; margin: 0; white-space: nowrap; position: relative; z-index: 2">DENIM RELAUNCH</p>
-        </div>
-      </div>
-      <div style="grid-row: 2; grid-column: 1; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-m-t1" src="./drops/case-tommy-m-t1.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Image"></image-slot></div>
-      <div style="grid-row: 2; grid-column: 2; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-m-t2" src="./drops/case-tommy-m-t2.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Image"></image-slot></div>
-      <div style="grid-row: 2; grid-column: 3; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-m-t3" src="./drops/case-tommy-m-t3.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Image"></image-slot></div>
-      <div style="grid-row: 2; grid-column: 4; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-m-t4" src="./drops/case-tommy-m-t4.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Image"></image-slot></div>
-      <div style="grid-row: 2; grid-column: 5; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-m-t5" src="./drops/case-tommy-m-t5.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Image"></image-slot></div>
-      <div style="grid-row: 2; grid-column: 6; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-m-t6" src="./drops/case-tommy-m-t6.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Image"></image-slot></div>
-      <div style="grid-row: 2; grid-column: 7; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-m-t7" src="./drops/case-tommy-m-t7.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Image"></image-slot></div>
-      <div style="grid-row: 3; grid-column: 3; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-m-b1" src="./drops/case-tommy-m-b1.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Image"></image-slot></div>
-      <div style="grid-row: 3; grid-column: 4; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-m-b2" src="./drops/case-tommy-m-b2.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Image"></image-slot></div>
-      <div style="grid-row: 3; grid-column: 5; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-m-b3" src="./drops/case-tommy-m-b3.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Image"></image-slot></div>
-    </div>
-
-    <div data-shutter="1" style="flex: 0 0 auto; width: 314px; height: 100%; padding: 5px 0 51px; box-sizing: border-box">
-      <div style="width: 284px; height: 100%; background: #d4d0c5; color: #2a2925; padding: clamp(16px, 4.4vh, 64px) clamp(22px, 5vw, 80px); box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden">
-        <div style="position: absolute; right: -40px; bottom: -80px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(150px, 42vh, 380px); line-height: 0.7; color: #2a2925; opacity: 0.09; pointer-events: none; user-select: none">04</div>
-        <div style="display: flex; align-items: center; gap: 16px; position: relative; z-index: 2">
-          <div style="width: 56px; height: 1px; background: #2a2925"></div>
-          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.34em; color: #7a776a; margin: 0; font-weight: 600">Chapter 04</p>
-        </div>
-        <div style="position: relative; z-index: 2">
-          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 3.3vh, 27px); font-weight: 300; text-transform: uppercase; line-height: 0.86; letter-spacing: -0.02em; margin: 0">Seasonal<br><span style="font-style: italic; color: #6b7280; width: 174px; height: 53px">Mens Line Assortment</span></h3>
-        </div>
-        <div style="display: flex; flex-direction: column; align-items: stretch; gap: 10px; position: relative; z-index: 2">
-          <p style="font-size: clamp(10.5px, 1.85vh, 15px); font-weight: 300; color: #4b5563; line-height: 1.55; text-wrap: pretty; max-width: 26rem; margin: 0">Full seasonal assortment mapped across fits, washes and price tiers.</p>
-          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #7a776a; margin: 0; white-space: nowrap">DENIM RELAUNCH</p>
-        </div>
-      </div>
-    </div>
-
-    <div style="flex: 0 0 auto; width: 4180px; height: 100%; padding: 5px 0 51px; box-sizing: border-box; display: grid; grid-template-columns: repeat(7, 580px); grid-template-rows: 55px 1fr 1fr; gap: 20px">
-      <div data-shutter="1" style="grid-row: 1; grid-column: 1 / span 7; min-height: 0">
-        <div style="width: 100%; height: 100%; background: #d4d0c5; color: #2a2925; padding: 16px clamp(24px, 3vw, 48px); box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; gap: 40px; position: relative; overflow: hidden">
-          <div style="position: absolute; right: -20px; bottom: -60px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 160px; line-height: 0.7; color: #2a2925; opacity: 0.09; pointer-events: none; user-select: none">04</div>
-          <div style="display: flex; align-items: center; gap: 16px; position: relative; z-index: 2">
-            <div style="width: 56px; height: 1px; background: #2a2925"></div>
-            <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.34em; color: #7a776a; margin: 0; font-weight: 600">Chapter 04</p>
-          </div>
-          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 300; text-transform: uppercase; line-height: 0.9; letter-spacing: -0.01em; margin: 0; position: relative; z-index: 2">Seasonal <span style="font-style: italic; color: #6b7280">Line Assortment</span></h3>
-          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #7a776a; margin: 0; white-space: nowrap; position: relative; z-index: 2">DENIM RELAUNCH</p>
-        </div>
-      </div>
-      <div style="grid-row: 2; grid-column: 1; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-n-t1" src="./drops/case-tommy-n-t1.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Image"></image-slot></div>
-      <div style="grid-row: 2; grid-column: 2; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-n-t2" src="./drops/case-tommy-n-t2.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Image"></image-slot></div>
-      <div style="grid-row: 2; grid-column: 3; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-n-t3" src="./drops/case-tommy-n-t3.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Image"></image-slot></div>
-      <div style="grid-row: 2; grid-column: 4; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-n-t4" src="./drops/case-tommy-n-t4.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Image"></image-slot></div>
-      <div style="grid-row: 2; grid-column: 5; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-n-t5" src="./opt/tommy-p33.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Image"></image-slot></div>
-      <div style="grid-row: 2; grid-column: 6; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-n-t6" src="./opt/tommy-p35.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Image"></image-slot></div>
-      <div style="grid-row: 2; grid-column: 7; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-n-t7" src="./opt/tommy-p34.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Image"></image-slot></div>
-      <div style="grid-row: 3; grid-column: 3; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-n-b1" src="./opt/tommy-p38.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Image"></image-slot></div>
-      <div style="grid-row: 3; grid-column: 4; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-n-b2" src="./opt/tommy-p37.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Image"></image-slot></div>
-      <div style="grid-row: 3; grid-column: 5; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-n-b3" src="./opt/tommy-p36.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Image"></image-slot></div>
-    </div>
-
-    <div data-shutter="1" style="flex: 0 0 auto; width: 314px; height: 100%; padding: 5px 0 51px; box-sizing: border-box">
-      <div style="width: 284px; height: 100%; background: #d4d0c5; color: #2a2925; padding: clamp(16px, 4.4vh, 64px) clamp(22px, 5vw, 80px); box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden">
-        <div style="position: absolute; right: -40px; bottom: -80px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(150px, 42vh, 380px); line-height: 0.7; color: #2a2925; opacity: 0.09; pointer-events: none; user-select: none">04</div>
-        <div style="display: flex; align-items: center; gap: 16px; position: relative; z-index: 2">
-          <div style="width: 56px; height: 1px; background: #2a2925"></div>
-          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.34em; color: #7a776a; margin: 0; font-weight: 600">Chapter 04</p>
-        </div>
-        <div style="position: relative; z-index: 2">
-          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 3.3vh, 27px); font-weight: 300; text-transform: uppercase; line-height: 0.86; letter-spacing: -0.02em; margin: 0">Sportswear<br><span style="font-style: italic; color: #6b7280">Denim Shop</span></h3>
-        </div>
-        <div style="display: flex; flex-direction: column; align-items: stretch; gap: 10px; position: relative; z-index: 2">
-          <p style="font-size: clamp(10.5px, 1.85vh, 15px); font-weight: 300; color: #4b5563; line-height: 1.55; text-wrap: pretty; max-width: 26rem; margin: 0">Rebuild Denim into a lifestyle program. Own Denim shop with layered textures in knits, sweaters, woven and accessories.</p>
-          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #7a776a; margin: 0; white-space: nowrap">DENIM RELAUNCH</p>
-        </div>
-      </div>
-    </div>
-
-    <div style="flex: 0 0 auto; width: 1300px; height: 100%; padding: 5px 0 51px; box-sizing: border-box; display: grid; grid-template-columns: 420px 420px 420px; grid-template-rows: 55px 1fr; gap: 20px">
-      <div data-shutter="1" style="grid-row: 1; grid-column: 1 / span 3; min-height: 0">
-        <div style="width: 100%; height: 100%; background: #d4d0c5; color: #2a2925; padding: 16px clamp(24px, 3vw, 48px); box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; gap: 40px; position: relative; overflow: hidden">
-          <div style="position: absolute; right: -20px; bottom: -60px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 160px; line-height: 0.7; color: #2a2925; opacity: 0.09; pointer-events: none; user-select: none">04</div>
-          <div style="display: flex; align-items: center; gap: 16px; position: relative; z-index: 2">
-            <div style="width: 56px; height: 1px; background: #2a2925"></div>
-            <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.34em; color: #7a776a; margin: 0; font-weight: 600">Chapter 04</p>
-          </div>
-          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 300; text-transform: uppercase; line-height: 0.9; letter-spacing: -0.01em; margin: 0; position: relative; z-index: 2">Denim <span style="font-style: italic; color: #6b7280">SHOP</span></h3>
-          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #7a776a; margin: 0; white-space: nowrap; position: relative; z-index: 2">DENIM SHOP CONCEPT BUILDOUT</p>
-        </div>
-      </div>
-      <div style="grid-row: 2; grid-column: 1; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-p5" src="./opt/tommy-p15b.webp" shape="rect" placeholder="Portrait image" style="width: 100%; height: 100%"></image-slot></div>
-      <div style="grid-row: 2; grid-column: 2; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-p6" src="./opt/tommy-p15.webp" shape="rect" placeholder="Portrait image" style="width: 100%; height: 100%"></image-slot></div>
-      <div style="grid-row: 2; grid-column: 3; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-w1" src="./opt/tommy-shop.webp" shape="rect" placeholder="Image" style="width: 100%; height: 100%"></image-slot></div>
-    </div>
-
-    <div style="flex: 0 0 auto; width: 100px; height: 100%; padding: 5px 0 51px; box-sizing: border-box; position: relative">
-      
-    </div>
-
-    <div data-shutter="1" style="flex: 0 0 auto; width: 314px; height: 100%; padding: 5px 0 51px; box-sizing: border-box">
-      <div style="width: 284px; height: 100%; background: #d4d0c5; color: #2a2925; padding: clamp(16px, 4.4vh, 64px) clamp(22px, 5vw, 80px); box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden">
-        <div style="position: absolute; right: -40px; bottom: -80px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(150px, 42vh, 380px); line-height: 0.7; color: #2a2925; opacity: 0.09; pointer-events: none; user-select: none">05</div>
-        <div style="display: flex; align-items: center; gap: 16px; position: relative; z-index: 2">
-          <div style="width: 56px; height: 1px; background: #2a2925"></div>
-          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.34em; color: #7a776a; margin: 0; font-weight: 600">Chapter 05</p>
-        </div>
-        <div style="position: relative; z-index: 2">
-          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 3.3vh, 27px); font-weight: 300; text-transform: uppercase; line-height: 0.86; letter-spacing: -0.02em; margin: 0">Live In<br><span style="font-style: italic; color: #6b7280">Tommy Jeans</span></h3>
-        </div>
-        <div style="display: flex; flex-direction: column; align-items: stretch; gap: 10px; position: relative; z-index: 2">
-          <p style="font-size: clamp(10.5px, 1.85vh, 15px); font-weight: 300; color: #4b5563; line-height: 1.55; text-wrap: pretty; max-width: 26rem; margin: 0">Heritage Modern- Tommy Jeans was built on heritage with a twist. Reinvigorating the archival TJ with a modern lens.</p>
-          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #7a776a; margin: 0; white-space: nowrap">2025 Relaunch</p>
-        </div>
-      </div>
-    </div>
-
-    <div style="flex: 0 0 auto; width: 1550px; height: 100%; padding: 5px 0 51px; box-sizing: border-box; display: grid; grid-template-columns: 860px 650px; grid-template-rows: 55px 1fr 1fr; gap: 20px">
-      <div data-shutter="1" style="grid-row: 1; grid-column: 1 / span 2; min-height: 0">
-        <div style="width: 100%; height: 100%; background: #d4d0c5; color: #2a2925; padding: 24px clamp(32px, 4vw, 64px); box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; gap: 48px; position: relative; overflow: hidden">
-          <div style="position: absolute; right: -20px; bottom: -70px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 200px; line-height: 0.7; color: #2a2925; opacity: 0.09; pointer-events: none; user-select: none" data-om-label="05">07</div>
-          <div style="display: flex; align-items: center; gap: 16px; position: relative; z-index: 2">
-            <div style="width: 56px; height: 1px; background: #2a2925"></div>
-            <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.34em; color: #7a776a; margin: 0; font-weight: 600">Chapter 05</p>
-          </div>
-          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 300; text-transform: uppercase; line-height: 0.9; letter-spacing: -0.01em; margin: 0; position: relative; z-index: 2">LIVE IN <span style="font-style: italic; color: #6b7280">TOMMY JEANS</span></h3>
-          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #7a776a; margin: 0; white-space: nowrap">DENIM RELAUNCH</p>
-        </div>
-      </div>
-      <div style="grid-row: 2 / span 2; align-self: center; height: 44%; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-q1" src="./opt/tommy-jeans-board.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Landscape image"></image-slot></div>
-      <div style="grid-row: 2; grid-column: 2; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-q2" src="./opt/tommy-p05.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Landscape image"></image-slot></div>
-      <div style="grid-row: 3; grid-column: 2; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-q3" src="./opt/tommy-p06.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Landscape image"></image-slot></div>
-    </div>
-
-    <div data-shutter="1" style="flex: 0 0 auto; width: 314px; height: 100%; padding: 5px 0 51px; box-sizing: border-box">
-      <div style="width: 284px; height: 100%; background: #d4d0c5; color: #2a2925; padding: clamp(16px, 4.4vh, 64px) clamp(22px, 5vw, 80px); box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden">
-        <div style="position: absolute; right: -40px; bottom: -80px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(150px, 42vh, 380px); line-height: 0.7; color: #2a2925; opacity: 0.09; pointer-events: none; user-select: none">06</div>
-        <div style="display: flex; align-items: center; gap: 16px; position: relative; z-index: 2">
-          <div style="width: 56px; height: 1px; background: #2a2925"></div>
-          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.34em; color: #7a776a; margin: 0; font-weight: 600">Chapter 06</p>
-        </div>
-        <div style="position: relative; z-index: 2">
-          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 3.3vh, 27px); font-weight: 300; text-transform: uppercase; line-height: 0.86; letter-spacing: -0.02em; margin: 0">Fit<br><span style="font-style: italic; color: #6b7280">Architecture</span></h3>
-        </div>
-        <div style="display: flex; flex-direction: column; align-items: stretch; gap: 10px; position: relative; z-index: 2">
-          <p style="font-size: clamp(10.5px, 1.85vh, 15px); font-weight: 300; color: #4b5563; line-height: 1.55; text-wrap: pretty; max-width: 26rem; margin: 0">A rebuilt fit ladder across Men's and Women's redefined block by block, then translated into a wash and fabric story the consumer can navigate on the floor.<br><br>Provided Creative Direction for photoshoot, copy, art.</p>
-          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #7a776a; margin: 0; white-space: nowrap">2025 Relaunch</p>
-        </div>
-      </div>
-    </div>
-
-    <div style="flex: 0 0 auto; width: 2160px; height: 100%; padding: 5px 0 51px; box-sizing: border-box; display: grid; grid-template-columns: 700px 700px 700px; grid-template-rows: 55px 1fr; gap: 20px">
-      <div data-shutter="1" style="grid-row: 1; grid-column: 1 / span 3; min-height: 0">
-        <div style="width: 100%; height: 100%; background: #d4d0c5; color: #2a2925; padding: 24px clamp(32px, 4vw, 64px); box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; gap: 48px; position: relative; overflow: hidden">
-          <div style="position: absolute; right: -20px; bottom: -70px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 200px; line-height: 0.7; color: #2a2925; opacity: 0.09; pointer-events: none; user-select: none">06</div>
-          <div style="display: flex; align-items: center; gap: 16px; position: relative; z-index: 2">
-            <div style="width: 56px; height: 1px; background: #2a2925"></div>
-            <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.34em; color: #7a776a; margin: 0; font-weight: 600">Chapter 06</p>
-          </div>
-          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 300; text-transform: uppercase; line-height: 0.9; letter-spacing: -0.01em; margin: 0; position: relative; z-index: 2">Fit Guide <span style="font-style: italic; color: #6b7280">Direction</span></h3>
-          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #7a776a; margin: 0; white-space: nowrap; position: relative; z-index: 2">2025 Relaunch</p>
-        </div>
-      </div>
-      <div data-drift="1" style="grid-row: 2; grid-column: 1; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-r2" src="./opt/tommy-fitdir-2.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Landscape image"></image-slot></div>
-      <div data-drift="-1" style="grid-row: 2; grid-column: 2; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-r3" src="./opt/tommy-fitdir-3.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Landscape image"></image-slot></div>
-      <div data-drift="1" style="grid-row: 2; grid-column: 3; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-r4" src="./opt/tommy-fitdir-4.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Landscape image"></image-slot></div>
-    </div>
-
-    <div data-shutter="1" style="flex: 0 0 auto; width: 314px; height: 100%; padding: 5px 0 51px; box-sizing: border-box">
-      <div style="width: 284px; height: 100%; background: #d4d0c5; color: #2a2925; padding: clamp(16px, 4.4vh, 64px) clamp(22px, 5vw, 80px); box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden">
-        <div style="position: absolute; right: -40px; bottom: -80px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(150px, 42vh, 380px); line-height: 0.7; color: #2a2925; opacity: 0.09; pointer-events: none; user-select: none">07</div>
-        <div style="display: flex; align-items: center; gap: 16px; position: relative; z-index: 2">
-          <div style="width: 56px; height: 1px; background: #2a2925"></div>
-          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.34em; color: #7a776a; margin: 0; font-weight: 600">Chapter 07</p>
-        </div>
-        <div style="position: relative; z-index: 2">
-          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 3.3vh, 27px); font-weight: 300; text-transform: uppercase; line-height: 0.86; letter-spacing: -0.02em; margin: 0">Creative Concept<br><span style="font-style: italic; color: #6b7280">&amp; Direction</span></h3>
-        </div>
-        <div style="display: flex; flex-direction: column; align-items: stretch; gap: 10px; position: relative; z-index: 2">
-          <p style="font-size: clamp(10.5px, 1.85vh, 15px); font-weight: 300; color: #4b5563; line-height: 1.55; text-wrap: pretty; max-width: 26rem; margin: 0">Season concept ideation and direction — setting the tone for seasonal development for denim shop.</p>
-          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #7a776a; margin: 0; white-space: nowrap">DENIM MARINER</p>
-        </div>
-      </div>
-    </div>
-
-    <div style="flex: 0 0 auto; width: 4240px; height: 100%; padding: 5px 0 51px; box-sizing: border-box; display: grid; grid-template-columns: 1500px 1000px 1000px; grid-template-rows: 55px 1fr; gap: 20px">
-      <div data-shutter="1" style="grid-row: 1; grid-column: 1 / span 3; min-height: 0">
-        <div style="width: 100%; height: 55px; background: #d4d0c5; color: #2a2925; padding: 0 clamp(32px, 4vw, 64px); box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; gap: 48px; position: relative; overflow: hidden">
-          <div style="position: absolute; right: -20px; bottom: -56px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 151px; line-height: 0.7; color: #2a2925; opacity: 0.09; pointer-events: none; user-select: none; top: -19px; left: 3339.88px">07</div>
-          <div style="display: flex; align-items: center; gap: 16px; position: relative; z-index: 2">
-            <div style="width: 56px; height: 1px; background: #2a2925"></div>
-            <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.34em; color: #7a776a; margin: 0; font-weight: 600">Chapter 07</p>
-          </div>
-          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 300; text-transform: uppercase; line-height: 0.9; letter-spacing: -0.01em; margin: 0; position: relative; z-index: 2">Creative Concept <span style="font-style: italic; color: #6b7280">&amp; Direction</span></h3>
-          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #7a776a; margin: 0; white-space: nowrap">DENIM MARINER</p>
-        </div>
-      </div>
-      <div style="grid-row: 2; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-cc1" src="./opt/tommy-cc1-2k.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Image"></image-slot></div>
-      <div style="grid-row: 2; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-cc2" src="./opt/tommy-cc2-2k.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Image"></image-slot></div>
-      <div style="grid-row: 2; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-tommy-cc3" src="./opt/tommy-cc3-2k.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Image"></image-slot></div>
-    </div>
-
-    <div style="flex: 0 0 auto; width: 120px; height: 100%"></div>
   </div>
-
-  
-
-  <div data-case-next="" style="display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; padding: 8px clamp(20px, 4vw, 48px); box-sizing: border-box; align-items: center; justify-content: flex-end; background: rgba(244,242,236,0.92); backdrop-filter: blur(12px); border-top: 1px solid #d8d4c9">
-    <button data-case-next-btn="" onClick="{{ openNext }}" style="text-align: left; display: flex; align-items: center; gap: 16px; transition: opacity 0.3s" style-hover="opacity: 0.6">
-      <span><span style="display: block; font-size: 8px; text-transform: uppercase; letter-spacing: 0.2em; color: #9ca3af; margin-bottom: 2px">Next</span><span data-case-next-label="" style="font-family: 'Cormorant Garamond', serif; font-size: clamp(0.7rem, 1.2vw, 0.96rem); font-weight: 300; text-transform: uppercase">Generation Gap</span></span>
-      <i class="ph ph-arrow-right" style="font-size: 12px"></i>
-    </button>
-  </div>
-
-  <div data-case="gap" data-case-h="1" style="display: none; animation: caseIn 0.7s cubic-bezier(0.16,1,0.3,1) both; height: calc(100vh - 46px); align-items: stretch; column-gap: 100px">
-    <div style="flex: 0 0 auto; width: 390px; height: 100%; padding: 5px clamp(24px, 3vw, 56px) 51px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; min-height: 0; overflow-y: auto">
-      <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.3em; color: #7a776a; margin-bottom: 24px; font-weight: 600">Work 02 — Gap</p>
-      <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 300; text-transform: uppercase; line-height: 0.9; margin-bottom: 40px; width: 300px">Generation<br><span style="font-style: italic; color: #6b7280">Gap</span></h2>
-      <p style="font-size: 15px; font-weight: 300; color: #4b5563; line-height: 1.8; text-wrap: pretty; max-width: 30rem">Revitalizing Gap's positioning in the industry — more premium, more authentic. Denim like no other, from new fabrics and fits to the most elevated silos for a modern urban lifestyle.</p>
-    </div>
-
-    
-
-    <div style="flex: 0 0 auto; width: 221px; height: 100%; padding: 5px clamp(24px, 3vw, 56px) 51px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; gap: 40px; min-height: 0; overflow-y: auto">
-      <div><p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #9ca3af; margin-bottom: 8px">Role</p><p style="font-size: 14px; font-weight: 300">Denim Design Lead</p></div>
-      <div><p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #9ca3af; margin-bottom: 8px">Scope</p><p style="font-size: 14px; font-weight: 300">Fabric, fit, finishing</p></div>
-      <div><p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #9ca3af; margin-bottom: 8px">Focus</p><p style="font-size: 14px; font-weight: 300">Sustainability at scale</p></div>
-    </div><div style="flex: 0 0 auto; width: min(70vw, 1000px); height: 100%; padding: 5px 0 51px; box-sizing: border-box; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 16px">
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-gap-g1" style="width: 100%; height: 100%" shape="rect" placeholder="Image 1" src="./opt/gap-02.webp"></image-slot></div>
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-gap-g2" style="width: 100%; height: 100%" shape="rect" placeholder="Image 2" src="./opt/gap-03.webp"></image-slot></div>
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-gap-g3" style="width: 100%; height: 100%" shape="rect" placeholder="Image 3" src="./opt/gap-06.webp"></image-slot></div>
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-gap-g4" style="width: 100%; height: 100%" shape="rect" placeholder="Image 4" src="./opt/gap-05.webp"></image-slot></div>
-    </div>
-
-    <div style="flex: 0 0 auto; width: 578px; height: 100%; padding: 5px 0 51px; box-sizing: border-box; position: relative">
-      <image-slot id="case-gap-hero" shape="rect" placeholder="Feature image" src="./opt/gap-7.webp" style="width: 945px; height: 100%; position: relative"></image-slot>
-    </div>
-
-    <div style="flex: 0 0 auto; width: min(32vw, 434px); height: 100%; padding: 5px clamp(24px, 3vw, 56px) 51px; box-sizing: border-box; display: flex; align-items: center">
-      
-    <p style="font-family: Inter, system-ui, sans-serif; font-size: clamp(1.05rem, 1.6vw, 1.35rem); font-weight: 100; letter-spacing: 0.01em; line-height: 1.55; text-wrap: pretty; position: absolute; width: 532px; height: 187px; color: #f4f2ec; z-index: 10; padding: 18px 20px; box-sizing: border-box; background: rgba(26,25,23,0.72); backdrop-filter: blur(6px)">Gap Wash Well&nbsp;<br><br><i>Wash less, recycle more, and let stretch denim age as honestly as rigid.</i></p></div>
-
-    <div style="flex: 0 0 auto; width: 948px; height: 100%; padding: 5px 0 51px; box-sizing: border-box; position: relative">
-      <image-slot id="case-gap-2" shape="rect" placeholder="Large portrait image" src="./opt/gap-8.webp"></image-slot>
-    </div>
-
-    <div style="flex: 0 0 auto; width: 948px; height: 100%; padding: 5px 0 51px; box-sizing: border-box; position: relative">
-      <image-slot id="case-gap-3" src="./opt/gap-9.webp" shape="rect" placeholder="Large portrait image"></image-slot>
-    </div>
-
-    <div style="flex: 0 0 auto; width: 948px; height: 100%; padding: 5px 0 51px; box-sizing: border-box; position: relative">
-      <image-slot id="case-gap-p3" src="./opt/gap-10.webp" shape="rect" placeholder="Portrait image"></image-slot>
-    </div>
-
-    <div style="flex: 0 0 auto; width: min(38vw, 520px); height: 100%; padding: 5px 0 51px; box-sizing: border-box; position: relative">
-      <image-slot id="case-gap-p4" src="./opt/gap-11.webp" shape="rect" placeholder="Portrait image" style="width: 948px"></image-slot>
-    </div>
-
-    <div style="flex: 0 0 auto; width: min(38vw, 520px); height: 100%; padding: 5px 0 51px; box-sizing: border-box; position: relative">
-      
-    </div>
-
-    
-
-    <div style="flex: 0 0 auto; width: 400px; height: 100%"></div>
-
-    
-
-    <div style="flex: 0 0 auto; width: 1020px; height: 100%; padding: 5px 0 51px; box-sizing: border-box; position: relative">
-      <image-slot id="case-gap-w2" src="./drops/case-gap-w2.webp" shape="rect" placeholder="Image"></image-slot>
-    </div>
-
-    <div style="flex: 0 0 auto; width: 700px; height: 100%; padding: 5px 0 51px; box-sizing: border-box; display: grid; grid-template-rows: 1fr 1fr; gap: 20px">
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-gap-s1a" style="width: 100%; height: 100%" src="./opt/gap-14.webp" shape="rect" placeholder="Image top"></image-slot></div>
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-gap-s1b" style="width: 100%; height: 100%" src="./opt/gap-13.webp" shape="rect" placeholder="Image bottom"></image-slot></div>
-    </div>
-
-    <div style="flex: 0 0 auto; width: 700px; height: 100%; padding: 5px 0 51px; box-sizing: border-box; display: grid; grid-template-rows: 1fr 1fr; gap: 20px">
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-gap-s2a" style="width: 100%; height: 100%" src="./opt/gap-15.webp" shape="rect" placeholder="Image top"></image-slot></div>
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-gap-s2b" style="width: 100%; height: 100%" src="./opt/gap-16.webp" shape="rect" placeholder="Image bottom"></image-slot></div>
-    </div>
-
-    <div style="flex: 0 0 auto; width: 700px; height: 100%; padding: 5px 0 51px; box-sizing: border-box; display: grid; grid-template-rows: 1fr 1fr; gap: 20px">
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-gap-s3a" style="width: 100%; height: 100%" src="./opt/gap-17.webp" shape="rect" placeholder="Image top"></image-slot></div>
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-gap-s3b" style="width: 100%; height: 100%" src="./opt/gap-18.webp" shape="rect" placeholder="Image bottom"></image-slot></div>
-    </div>
-
-    <div style="flex: 0 0 auto; width: 24px; height: 100%"></div>
-  </div>
-
-  <div data-case="eagle" data-case-h="1" style="display: none; animation: caseIn 0.7s cubic-bezier(0.16,1,0.3,1) both; height: calc(100vh - 46px); align-items: stretch; column-gap: 50px">
-    <div style="flex: 0 0 auto; width: 385px; height: 100%; padding: 5px clamp(24px, 3vw, 56px) 51px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; min-height: 0; overflow-y: auto">
-      <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.3em; color: #7a776a; margin-bottom: 24px; font-weight: 600">Work 03 — American Eagle</p>
-      <h2 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(2.24rem, 4.8vw, 4.8rem); font-weight: 300; text-transform: uppercase; line-height: 0.9; margin-bottom: 40px">Denim<br><span style="font-style: italic; color: #6b7280; font-size: 70px">Revival</span></h2>
-      <p style="font-size: 15px; font-weight: 300; color: #4b5563; line-height: 1.8; text-wrap: pretty; max-width: 30rem">American Eagle Men's Denim went through a transformative overhaul in 2018 — Gen-Z trend-focused assortments alongside an authentic heritage line for denim heads of every generation.</p>
-    </div>
-
-    <div style="flex: 0 0 auto; width: 145px; height: 100%; padding: 5px 12px 51px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; gap: 40px; min-height: 0; overflow-y: auto">
-      <div><p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #9ca3af; margin-bottom: 8px">Role</p><p style="font-size: 14px; font-weight: 300">Men's Denim Design</p></div>
-      <div><p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #9ca3af; margin-bottom: 8px">Year</p><p style="font-size: 14px; font-weight: 300">2018 overhaul</p></div>
-      <div><p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #9ca3af; margin-bottom: 8px">Focus</p><p style="font-size: 14px; font-weight: 300">Silhouette, fit, fabric, sustainability</p></div>
-    </div>
-
-    <div style="flex: 0 0 auto; width: min(70vw, 1000px); height: 100%; padding: 5px 0 51px; box-sizing: border-box; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 16px">
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-eagle-g1" style="width: 100%; height: 100%" shape="rect" placeholder="Image 1" src="./opt/ae-22.webp"></image-slot></div>
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-eagle-g2" style="width: 100%; height: 100%" shape="rect" placeholder="Image 2" src="./opt/ae-23.webp"></image-slot></div>
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-eagle-g3" style="width: 100%; height: 100%" shape="rect" placeholder="Image 3" src="./opt/ae-24.webp"></image-slot></div>
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-eagle-g4" style="width: 100%; height: 100%" shape="rect" placeholder="Image 4" src="./opt/ae-25.webp"></image-slot></div>
-    </div>
-
-    <div data-shutter="1" style="flex: 0 0 auto; width: 314px; height: 100%; padding: 5px 0 51px; box-sizing: border-box">
-      <div style="width: 284px; height: 100%; background: #d4d0c5; color: #2a2925; padding: clamp(16px, 4.4vh, 64px) clamp(22px, 5vw, 80px); box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden">
-        <div style="position: absolute; right: -40px; bottom: -80px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(150px, 42vh, 380px); line-height: 0.7; color: #2a2925; opacity: 0.09; pointer-events: none; user-select: none">01</div>
-        <div style="display: flex; align-items: center; gap: 16px; position: relative; z-index: 2">
-          <div style="width: 56px; height: 1px; background: #2a2925"></div>
-          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.34em; color: #7a776a; margin: 0; font-weight: 600">Chapter 01</p>
-        </div>
-        <div style="position: relative; z-index: 2">
-          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 3.3vh, 27px); font-weight: 300; text-transform: uppercase; line-height: 0.86; letter-spacing: -0.02em; margin: 0">DENIM<br><span style="font-style: italic; color: #6b7280">REFRESH</span></h3>
-        </div>
-        <div style="display: flex; flex-direction: column; align-items: stretch; gap: 10px; position: relative; z-index: 2">
-          <p style="font-size: clamp(10.5px, 1.85vh, 15px); font-weight: 300; color: #4b5563; line-height: 1.55; text-wrap: pretty; max-width: 26rem; margin: 0">A transformative overhaul of the men's denim floor — assortment, fit and fabric rebuilt end to end.</p>
-          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #7a776a; margin: 0; white-space: nowrap">DENIM REVIVAL</p>
-        </div>
-      </div>
-    </div>
-
-    <div data-case-anchor="" data-follow="1" data-appear="0.72" data-x="69%" data-text="Fast enough for Gen-Z trend cycles, credible enough for purists." style="flex: 0 0 auto; width: 0; height: 100%"></div>
-
-    <div data-shutter="1" style="flex: 0 0 auto; width: auto; height: 100%; padding: 5px 0 51px; box-sizing: border-box; display: grid; grid-template-columns: repeat(7, auto); grid-template-rows: 55px 1fr; gap: 20px">
-      <div style="grid-row: 1; grid-column: 1 / span 7; min-height: 0"><div style="width: 100%; height: 55px; background: #d4d0c5; color: #2a2925; padding: 0 clamp(32px, 4vw, 64px); box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; gap: 48px; position: relative; overflow: hidden">
-        <div style="position: absolute; right: -20px; bottom: -70px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 200px; line-height: 0.7; color: #2a2925; opacity: 0.09; pointer-events: none; user-select: none">01</div>
-        <div style="display: flex; align-items: center; gap: 16px; position: relative; z-index: 2"><div style="width: 56px; height: 1px; background: #2a2925"></div><p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.34em; color: #7a776a; margin: 0; font-weight: 600">Chapter 01</p></div>
-        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 300; text-transform: uppercase; line-height: 0.9; letter-spacing: -0.01em; margin: 0; position: relative; z-index: 2">DENIM <span style="font-style: italic; color: #6b7280">REFRESH</span></h3>
-        <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #7a776a; margin: 0; white-space: nowrap; position: relative; z-index: 2">DENIM REVIVAL</p>
-      </div></div>
-      <div style="grid-row: 2; position: relative; min-height: 0; overflow: hidden; aspect-ratio: 1600 / 1257"><image-slot id="case-eagle-2" style="width: 100%; height: 100%" shape="rect" placeholder="Large portrait image" src="./opt/ae-26.webp"></image-slot></div>
-      <div style="grid-row: 2; position: relative; min-height: 0; overflow: hidden; aspect-ratio: 1600 / 1257"><image-slot id="case-eagle-3" style="width: 100%; height: 100%" shape="rect" placeholder="Large portrait image" src="./opt/ae-27.webp"></image-slot></div>
-      <div style="grid-row: 2; position: relative; min-height: 0; overflow: hidden; aspect-ratio: 1600 / 1257"><image-slot id="case-eagle-p3" style="width: 100%; height: 100%" shape="rect" placeholder="Portrait image" src="./opt/ae-28.webp"></image-slot></div>
-      <div style="grid-row: 2; min-height: 0; display: grid; grid-template-rows: 1fr 1fr; gap: 20px"><div style="position: relative; min-height: 0; overflow: hidden; aspect-ratio: 1600 / 1257"><image-slot id="case-eagle-p3b-d1a" style="width: 100%; height: 100%" shape="rect" placeholder="Image top" src="./opt/ae-29.webp"></image-slot></div><div style="position: relative; min-height: 0; overflow: hidden; aspect-ratio: 1600 / 1257"><image-slot id="case-eagle-p3b-d1b" style="width: 100%; height: 100%" shape="rect" placeholder="Image bottom" src="./opt/ae-30.webp"></image-slot></div></div>
-      <div style="grid-row: 2; min-height: 0; display: grid; grid-template-rows: 1fr 1fr; gap: 20px"><div style="position: relative; min-height: 0; overflow: hidden; aspect-ratio: 1600 / 1257"><image-slot id="case-eagle-p3b-d2a" style="width: 100%; height: 100%" shape="rect" placeholder="Image top" src="./opt/ae-31.webp"></image-slot></div><div style="position: relative; min-height: 0; overflow: hidden; aspect-ratio: 1600 / 1257"><image-slot id="case-eagle-p3b-d2b" style="width: 100%; height: 100%" shape="rect" placeholder="Image bottom" src="./opt/ae-32.webp"></image-slot></div></div>
-      <div style="grid-row: 2; min-height: 0; display: grid; grid-template-rows: 1fr 1fr; gap: 20px"><div style="position: relative; min-height: 0; overflow: hidden; aspect-ratio: 1600 / 1257"><image-slot id="case-eagle-p3b-d3a" style="width: 100%; height: 100%" shape="rect" placeholder="Image top" src="./opt/ae-33.webp"></image-slot></div><div style="position: relative; min-height: 0; overflow: hidden; aspect-ratio: 1600 / 1257"><image-slot id="case-eagle-p3b-d3b" style="width: 100%; height: 100%" shape="rect" placeholder="Image bottom" src="./opt/ae-34.webp"></image-slot></div></div>
-      <div style="grid-row: 2; min-height: 0; display: grid; grid-template-rows: 1fr 1fr; gap: 20px"><div style="position: relative; min-height: 0; overflow: hidden; aspect-ratio: 1600 / 1257"><image-slot id="case-eagle-p3b" style="width: 100%; height: 100%" shape="rect" placeholder="Image top" src="./opt/ae-35.webp"></image-slot></div><div style="position: relative; min-height: 0; overflow: hidden; aspect-ratio: 1600 / 1257"><image-slot id="case-eagle-p3b2" style="width: 100%; height: 100%" shape="rect" placeholder="Image bottom" src="./opt/ae-36.webp"></image-slot></div></div>
-    </div>
-
-    <div data-shutter="1" style="flex: 0 0 auto; width: 314px; height: 100%; padding: 5px 0 51px; box-sizing: border-box">
-      <div style="width: 284px; height: 100%; background: #d4d0c5; color: #2a2925; padding: clamp(16px, 4.4vh, 64px) clamp(22px, 5vw, 80px); box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden">
-        <div style="position: absolute; right: -40px; bottom: -80px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(150px, 42vh, 380px); line-height: 0.7; color: #2a2925; opacity: 0.09; pointer-events: none; user-select: none">02</div>
-        <div style="display: flex; align-items: center; gap: 16px; position: relative; z-index: 2">
-          <div style="width: 56px; height: 1px; background: #2a2925"></div>
-          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.34em; color: #7a776a; margin: 0; font-weight: 600">Chapter 02</p>
-        </div>
-        <div style="position: relative; z-index: 2">
-          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 3.3vh, 27px); font-weight: 300; text-transform: uppercase; line-height: 0.86; letter-spacing: -0.02em; margin: 0">SPRING<br><span style="font-style: italic; color: #6b7280">CONCEPT</span></h3>
-        </div>
-        <div style="display: flex; flex-direction: column; align-items: stretch; gap: 10px; position: relative; z-index: 2">
-          <p style="font-size: clamp(10.5px, 1.85vh, 15px); font-weight: 300; color: #4b5563; line-height: 1.55; text-wrap: pretty; max-width: 26rem; margin: 0">Seasonal concept direction translated into wash, fabric and silhouette across the men's denim floor.</p>
-          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #7a776a; margin: 0; white-space: nowrap">DENIM REVIVAL</p>
-        </div>
-      </div>
-    </div>
-
-    <div data-case-anchor="" data-x="54%" data-until="-6" data-start-tile="case-eagle-p4" data-fade-tile="case-eagle-p6" data-switch="0.30" data-x2="78%" data-y2="90%" data-scale2="0.255" data-text="AMERICAN EAGLE MENS DENIM||Spring Concept &amp; Development" style="flex: 0 0 auto; width: 0; height: 100%"></div>
-
-    <div data-shutter="1" style="flex: 0 0 auto; width: 3440px; height: 100%; padding: 5px 0 51px; box-sizing: border-box; display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: 55px 1fr; gap: 20px">
-      <div style="grid-row: 1; grid-column: 1 / span 4; min-height: 0">
-        <div style="width: 100%; height: 55px; background: #d4d0c5; color: #2a2925; padding: 0 clamp(32px, 4vw, 64px); box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; gap: 48px; position: relative; overflow: hidden">
-        <div style="position: absolute; right: -20px; bottom: -70px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 200px; line-height: 0.7; color: #2a2925; opacity: 0.09; pointer-events: none; user-select: none">02</div>
-        <div style="display: flex; align-items: center; gap: 16px; position: relative; z-index: 2">
-          <div style="width: 56px; height: 1px; background: #2a2925"></div>
-          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.34em; color: #7a776a; margin: 0; font-weight: 600">Chapter 02</p>
-        </div>
-        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 300; text-transform: uppercase; line-height: 0.9; letter-spacing: -0.01em; margin: 0; position: relative; z-index: 2">SPRING <span style="font-style: italic; color: #6b7280">CONCEPT</span></h3>
-        <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #7a776a; margin: 0; white-space: nowrap; position: relative; z-index: 2">DENIM REVIVAL</p>
-      </div>
-      </div>
-      <div style="grid-row: 2; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-eagle-p4" style="width: 100%; height: 100%" shape="rect" placeholder="Portrait image" src="./opt/ae-38.webp"></image-slot></div>
-      <div style="grid-row: 2; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-eagle-p5" style="width: 100%; height: 100%" shape="rect" placeholder="Portrait image" src="./opt/ae-39.webp"></image-slot></div>
-      <div style="grid-row: 2; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-eagle-p6" style="width: 100%; height: 100%" shape="rect" placeholder="Portrait image" src="./opt/ae-40.webp"></image-slot></div>
-      <div style="grid-row: 2; position: relative; min-height: 0; overflow: hidden"><image-slot id="case-eagle-w1" style="width: 100%; height: 100%" shape="rect" placeholder="Image" src="./opt/ae-41.webp"></image-slot></div>
-    </div>
-
-    <div style="flex: 0 0 auto; width: 720px; height: 100%; padding: 5px 0 51px; box-sizing: border-box; position: relative; margin-left: -25px; display: flex; align-items: center; justify-content: center">
-      <p style="font-family: Inter, system-ui, sans-serif; font-size: clamp(1.98rem, 2.91vw, 2.39rem); font-weight: 300; letter-spacing: 0.02em; line-height: 1.7; color: #2a2925; text-align: center; text-wrap: pretty; margin: 0 auto; max-width: 26rem">AE MENS DENIM<br>WASH DEVELOPMENT</p>
-    </div>
-
-    <div style="flex: 0 0 auto; width: 530px; height: 100%; padding: 5px 0 51px; box-sizing: border-box; display: grid; grid-template-rows: 1fr 1fr; gap: 20px">
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-eagle-c1" style="width: 100%; height: 100%" shape="rect" placeholder="Landscape image" src="./opt/ae-43.webp"></image-slot></div>
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-eagle-c1b" style="width: 100%; height: 100%" shape="rect" placeholder="Landscape image" src="./opt/ae-45.webp"></image-slot></div>
-    </div>
-
-    <div style="flex: 0 0 auto; width: 530px; height: 100%; padding: 5px 0 51px; box-sizing: border-box; display: grid; grid-template-rows: 1fr 1fr; gap: 20px">
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-eagle-c1c" style="width: 100%; height: 100%" shape="rect" placeholder="Landscape image" src="./opt/ae-44.webp"></image-slot></div>
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-eagle-c1d" style="width: 100%; height: 100%" shape="rect" placeholder="Landscape image" src="./opt/ae-46.webp"></image-slot></div>
-    </div>
-
-    <div style="flex: 0 0 auto; width: min(38vw, 520px); height: 100%; padding: 5px 0 51px; box-sizing: border-box; position: relative">
-      <image-slot id="case-eagle-c2" shape="rect" placeholder="Image" src="./opt/ae-54.webp"></image-slot>
-    </div>
-
-    <div style="flex: 0 0 auto; width: min(38vw, 520px); height: 100%; padding: 5px 0 51px; box-sizing: border-box; position: relative">
-      <image-slot id="case-eagle-c3" src="./drops/case-eagle-c3.webp" shape="rect" placeholder="Image"></image-slot>
-    </div>
-
-    <div style="flex: 0 0 auto; width: min(38vw, 520px); height: 100%; padding: 5px 0 51px; box-sizing: border-box; position: relative">
-    </div>
-
-    <div data-case-anchor="" data-x="54%" data-until="-6" data-start-tile="case-eagle-s1a" data-fade-tile="case-eagle-s3b" data-fade-with-drift="1" data-drift-len="900" data-fade-len="140" data-end-x="78" data-switch="0.30" data-center="1" data-x2="33%" data-y2="calc(48% + 17px)" data-scale2="0.255" data-text="AE MENS DENIM||COLLABORATIONS" style="flex: 0 0 auto; width: 0; height: 100%"></div>
-
-    <div style="flex: 0 0 auto; width: 530px; height: 100%; padding: 5px 0 51px; box-sizing: border-box; display: grid; grid-template-rows: 1fr 1fr; gap: 20px">
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-eagle-s1a" style="width: 100%; height: 100%" shape="rect" placeholder="Image top" src="./opt/ae-73.webp"></image-slot></div>
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-eagle-s1b" style="width: 100%; height: 100%" shape="rect" placeholder="Image bottom" src="./opt/ae-75.webp"></image-slot></div>
-    </div>
-
-    <div style="flex: 0 0 auto; width: 530px; height: 100%; padding: 5px 0 51px; box-sizing: border-box; display: grid; grid-template-rows: 1fr 1fr; gap: 20px">
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-eagle-s2a" style="width: 100%; height: 100%" shape="rect" placeholder="Image top" src="./opt/ae-74.webp"></image-slot></div>
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-eagle-s2b" style="width: 100%; height: 100%" shape="rect" placeholder="Image bottom" src="./opt/ae-77.webp"></image-slot></div>
-    </div>
-
-    <div style="flex: 0 0 auto; width: 530px; height: 100%; padding: 5px 0 51px; box-sizing: border-box; display: grid; grid-template-rows: 1fr 1fr; gap: 20px">
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-eagle-s3a" style="width: 100%; height: 100%" shape="rect" placeholder="Image top" src="./opt/ae-76.webp"></image-slot></div>
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-eagle-s3b" style="width: 100%; height: 100%" shape="rect" placeholder="Image bottom" src="./opt/ae-78.webp"></image-slot></div>
-    </div>
-
-    <div style="flex: 0 0 auto; width: min(34vw, 460px); height: 100%"></div>
-  </div>
-
-  <div data-case="ralph" data-case-h="1" style="display: none; animation: caseIn 0.7s cubic-bezier(0.16,1,0.3,1) both; height: calc(100vh - 46px); align-items: stretch; column-gap: 100px">
-    <div style="flex: 0 0 auto; width: 449px; height: 100%; padding: 5px clamp(24px, 3vw, 56px) 51px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; min-height: 0; overflow-y: auto">
-      <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.3em; color: #7a776a; margin-bottom: 24px; font-weight: 600">Work 04 — Ralph Lauren</p>
-      <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 70px; font-weight: 300; text-transform: uppercase; line-height: 0.9; margin-bottom: 40px; width: 331px; height: 213px">Heritage<br><span style="font-style: italic; color: #6b7280">Study</span></h2>
-      <p style="font-size: 15px; font-weight: 300; color: #4b5563; line-height: 1.8; text-wrap: pretty; max-width: 30rem">At Ralph Lauren, I discovered my passion for history, vintage garments, and artifacts from around the world — learning to look beyond aesthetics and reimagine the past with purpose.</p>
-    </div>
-
-    <div style="flex: 0 0 auto; width: 297px; height: 100%; padding: 5px clamp(24px, 3vw, 56px) 51px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; gap: 40px; min-height: 0; overflow-y: auto">
-      <div><p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #9ca3af; margin-bottom: 8px">Role</p><p style="font-size: 14px; font-weight: 300">Design — Archive &amp; Vintage</p></div>
-      <div><p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #9ca3af; margin-bottom: 8px">Scope</p><p style="font-size: 14px; font-weight: 300">Research, reinterpretation</p></div>
-      <div><p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #9ca3af; margin-bottom: 8px">Traditions</p><p style="font-size: 14px; font-weight: 300">Americana, British, French, Asian</p></div>
-    </div>
-
-    <div style="flex: 0 0 auto; width: min(70vw, 1000px); height: 100%; padding: 5px 0 51px; box-sizing: border-box; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 16px">
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-ralph-hero" src="./drops/case-ralph-hero.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Archive 1"></image-slot></div>
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-ralph-hero-2" src="./drops/case-ralph-hero-2.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Archive 2"></image-slot></div>
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-ralph-hero-3" src="./drops/case-ralph-hero-3.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Archive 3"></image-slot></div>
-      <div style="position: relative; min-height: 0; overflow: hidden"><image-slot id="case-ralph-hero-4" src="./drops/case-ralph-hero-4.webp" style="width: 100%; height: 100%" shape="rect" placeholder="Archive 4"></image-slot></div>
-    </div>
-
-    <div style="flex: 0 0 auto; width: min(52vw, 720px); height: 100%; padding: 5px 0 51px; box-sizing: border-box; position: relative">
-      <image-slot id="case-ralph-2" src="./drops/case-ralph-2.webp" shape="rect" placeholder="Artifact detail"></image-slot>
-    </div>
-
-    <div style="flex: 0 0 auto; width: min(32vw, 434px); height: 100%; padding: 5px clamp(24px, 3vw, 56px) 51px; box-sizing: border-box; display: flex; align-items: center">
-      <p style="font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 3vw, 2.6rem); font-weight: 300; font-style: italic; line-height: 1.3; text-wrap: pretty">Understanding why a garment mattered, then giving that reason a contemporary body.</p>
-    </div>
-
-    <div style="flex: 0 0 auto; width: min(38vw, 520px); height: 100%; padding: 5px 0 51px; box-sizing: border-box; position: relative">
-      <image-slot id="case-ralph-4" src="./drops/case-ralph-4.webp" shape="rect" placeholder="Large portrait image — archive study"></image-slot>
-    </div>
-
-    <div style="flex: 0 0 auto; width: min(38vw, 520px); height: 100%; padding: 5px 0 51px; box-sizing: border-box; position: relative">
-      <image-slot id="case-ralph-5" src="./drops/case-ralph-5.webp" shape="rect" placeholder="Large portrait image"></image-slot>
-    </div>
-
-    <div style="flex: 0 0 auto; width: min(38vw, 520px); height: 100%; padding: 5px 0 51px; box-sizing: border-box; position: relative">
-      <image-slot id="case-ralph-6" src="./drops/case-ralph-6.webp" shape="rect" placeholder="Portrait image"></image-slot>
-    </div>
-
-    <div style="flex: 0 0 auto; width: min(38vw, 520px); height: 100%; padding: 5px 0 51px; box-sizing: border-box; position: relative">
-      <image-slot id="case-ralph-7" src="./drops/case-ralph-7.webp" shape="rect" placeholder="Portrait image"></image-slot>
-    </div>
-
-    <div style="flex: 0 0 auto; width: min(38vw, 520px); height: 100%; padding: 5px 0 51px; box-sizing: border-box; position: relative">
-      <image-slot id="case-ralph-8" src="./drops/case-ralph-8.webp" shape="rect" placeholder="Portrait image"></image-slot>
-    </div>
-
-    <div style="flex: 0 0 auto; width: min(calc(38vw + 100px), 620px); height: 100%; padding: 5px 0 51px; box-sizing: border-box; position: relative">
-      <image-slot id="case-ralph-9" src="./drops/case-ralph-9.webp" shape="rect" placeholder="Portrait image"></image-slot>
-    </div>
-
-    <div style="flex: 0 0 auto; width: 520px; height: 100%; padding: 5px 0 51px; box-sizing: border-box; position: relative">
-      <image-slot id="case-ralph-10" src="./drops/case-ralph-10.webp" shape="rect" placeholder="Image"></image-slot>
-    </div>
-
-    <div style="flex: 0 0 auto; width: 1020px; height: 100%; padding: 5px 0 51px; box-sizing: border-box; position: relative">
-      <image-slot id="case-ralph-11" src="./drops/case-ralph-11.webp" shape="rect" placeholder="Image"></image-slot>
-    </div>
-
-    <div style="flex: 0 0 auto; width: 24px; height: 100%"></div>
-  </div>
-</div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{
   &quot;projectsLayout&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;horizontal&quot;, &quot;stacked&quot;, &quot;snap&quot;], &quot;default&quot;: &quot;horizontal&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Layout&quot;},
@@ -1010,6 +473,75 @@ class Component extends DCLogic {
   titles = { tommy: 'Modern Heritage', gap: 'Generation Gap', eagle: 'Denim Revival', ralph: 'Heritage Study' };
 
   openNext = () => { if (this._nextKey) this.openCase(this._nextKey); };
+
+  GATE_MS = 30 * 60 * 1000;
+
+  isUnlocked = () => {
+    try { return Number(sessionStorage.getItem('nzCaseUntil') || 0) > Date.now(); } catch (e) { return false; }
+  };
+
+  markUnlocked = () => {
+    try { sessionStorage.setItem('nzCaseUntil', String(Date.now() + this.GATE_MS)); } catch (e) {}
+  };
+
+  // Cases are stripped from the public HTML on the deployed site and served by
+  // /api/cases only with a valid session cookie. In the design preview they are
+  // still inline, so this resolves immediately.
+  ensureCases = async () => {
+    if (document.querySelector('[data-case]')) return true;
+    const ov = document.querySelector('[data-case-overlay]');
+    if (!ov) return false;
+    const r = await fetch('/api/cases', { credentials: 'same-origin' });
+    if (!r.ok) return false;
+    const html = await r.text();
+    ov.insertAdjacentHTML('beforeend', html);
+    const nb = ov.querySelector('[data-case-next-btn]');
+    if (nb && !nb._wired) { nb._wired = true; nb.addEventListener('click', this.openNext); }
+    return true;
+  };
+
+  requestCase = (key) => {
+    if (this.isUnlocked()) {
+      this.ensureCases().then((ok) => {
+        if (ok) this.openCase(key);
+        else { this._gateKey = key; this.setState({ gateOpen: true, gateError: 'Session expired — enter the password again.' }); }
+      });
+      return;
+    }
+    this._gateKey = key;
+    this.setState({ gateOpen: true, gateError: '', gateBusy: false });
+  };
+
+  onGatePw = (e) => { this._gatePw = e.target.value; };
+
+  closeGate = () => { this._gateKey = null; this.setState({ gateOpen: false, gateBusy: false, gateError: '' }); };
+
+  submitGate = async (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    const pw = (this._gatePw || '').trim();
+    if (!pw) { this.setState({ gateError: 'Enter the password.' }); return; }
+    this.setState({ gateBusy: true, gateError: '' });
+    let ok = false, offline = false;
+    try {
+      const r = await fetch('/api/unlock', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'same-origin',
+        body: JSON.stringify({ password: pw })
+      });
+      if (r.status === 404) offline = true;
+      else ok = r.ok;
+    } catch (err) { offline = true; }
+
+    if (!ok && !offline) { this.setState({ gateBusy: false, gateError: 'Incorrect password.' }); return; }
+    this.markUnlocked();
+    const key = this._gateKey;
+    let loaded = true;
+    try { loaded = await this.ensureCases(); } catch (err) { loaded = false; }
+    this._gateKey = null;
+    this.setState({ gateOpen: false, gateBusy: false, gateError: '' });
+    if (loaded && key) this.openCase(key);
+  };
 
   openCase = (key) => {
     this.setState({ activeCase: key });
@@ -1840,10 +1372,16 @@ class Component extends DCLogic {
       });
     }
     return {
-      openTommy: () => this.openCase('tommy'),
-      openGap: () => this.openCase('gap'),
-      openEagle: () => this.openCase('eagle'),
-      openRalph: () => this.openCase('ralph'),
+      openTommy: () => this.requestCase('tommy'),
+      openGap: () => this.requestCase('gap'),
+      openEagle: () => this.requestCase('eagle'),
+      openRalph: () => this.requestCase('ralph'),
+      gateOpen: !!this.state.gateOpen,
+      gateError: this.state.gateError || '',
+      gateBtnLabel: this.state.gateBusy ? 'Checking…' : 'Unlock',
+      onGatePw: this.onGatePw,
+      submitGate: this.submitGate,
+      closeGate: this.closeGate,
       closeCase: this.closeCase,
       openNext: this.openNext,
       openNext: this.openNext,
