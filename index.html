@@ -924,12 +924,26 @@ class Component extends DCLogic {
       col.appendChild(clone);
     }
 
+    // Each chapter ships a primary divider and a compact repeat. The primary one
+    // is the only kind whose h3 breaks across two lines — select on that rather
+    // than on chapter number, since one chapter can hold two real sections.
+    const heads = Array.from(el.querySelectorAll('[data-shutter] h3'));
+    const primary = new Set(heads.filter((h) => h.querySelector('br')));
+    const keep = primary.size ? primary : new Set(heads);
+
     el.querySelectorAll('image-slot, [data-shutter] h3').forEach((node) => {
       if (node.tagName === 'H3') {
+        if (!keep.has(node)) return;
+        // read through the DOM: the runtime stamps attributes onto <br>, and this
+        // decodes entities too
+        const c = node.cloneNode(true);
+        c.querySelectorAll('br').forEach((br) => br.replaceWith(document.createTextNode(' ')));
+        const text = (c.textContent || '').replace(/\s+/g, ' ').trim();
+        if (!text) return;
         const h = document.createElement('div');
-        h.textContent = (node.textContent || '').trim();
+        h.textContent = text;
         h.style.cssText = "font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:300; text-transform:uppercase; line-height:1.05; letter-spacing:-0.01em; margin:20px 0 0";
-        if (h.textContent) col.appendChild(h);
+        col.appendChild(h);
         return;
       }
       const src = node.getAttribute('src');
@@ -964,9 +978,53 @@ class Component extends DCLogic {
     }
   }
 
+  // Page chrome on phones. Authored values are inline styles, so snapshot the
+  // whole style attribute once and restore it verbatim rather than clearing
+  // individual properties (clearing would delete the authored literal).
+  applyMobileChrome(mobile) {
+    const snap = (el) => { if (el && el._cssC == null) el._cssC = el.getAttribute('style') || ''; return el; };
+    const restore = (el) => { if (el && el._cssC != null) el.setAttribute('style', el._cssC); };
+
+    const nav = document.querySelector('nav');
+    const links = nav && nav.children[1];
+    const hero = document.querySelector('header > div');
+    const exp = document.querySelector('#experience > div');
+    // cache these on first run: the mobile branch mutates the very properties a
+    // style-substring selector matches on, so re-querying later finds nothing
+    // and the elements never get restored
+    if (!this._marks) {
+      this._marks = Array.from(document.querySelectorAll('[data-hs-panel] div[style*="text-stroke"]'));
+    }
+    if (!this._drifts) {
+      this._drifts = Array.from(document.querySelectorAll('[data-hs-panel] div')).filter((d) => {
+        const kids = Array.from(d.children);
+        return kids.length === 2 && kids.every((k) => k.querySelector('image-slot'));
+      });
+    }
+    const marks = this._marks;
+    const drifts = this._drifts;
+    const all = [nav, links, hero, exp, ...marks, ...drifts];
+    all.forEach(snap);
+
+    // only on phones: the work section is stacked there, so no sticky depends on it
+    document.body.style.overflowX = mobile ? 'hidden' : '';
+
+    if (!mobile) { all.forEach(restore); return; }
+
+    if (nav) nav.style.padding = '18px 20px';
+    if (links) { links.style.gap = '16px'; links.style.fontSize = '9px'; links.style.letterSpacing = '0.12em'; }
+    if (hero) { hero.style.gridTemplateColumns = 'minmax(0,1fr)'; hero.style.gap = '40px'; }
+    if (exp) { exp.style.flexDirection = 'column'; exp.style.gap = '56px'; }
+    // the outlined brand letters and the drifting pair both read as stray marks
+    // at phone scale — hold a single still frame instead
+    marks.forEach((m) => { m.style.display = 'none'; });
+    drifts.forEach((d) => { d.style.animation = 'none'; d.style.width = '200%'; d.style.transform = 'none'; });
+  }
+
   // ---- projects section layout ----
   applyLayout() {
     const mobile = this.isMobile();
+    this.applyMobileChrome(mobile);
     const layout = mobile ? 'stacked' : (this.props.projectsLayout ?? 'horizontal');
     const wrap = document.querySelector('[data-hs-wrapper]');
     const sticky = document.querySelector('[data-hs-sticky]');
