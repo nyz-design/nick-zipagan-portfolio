@@ -39,7 +39,28 @@
   ul { padding: 0; list-style: none; }
   button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
   @media (max-width: 768px) {
+    /* iOS Safari inflates type on its own, which is what pushed this copy past
+       the measure it was laid out for — hold it at the authored size */
+    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     html, body { max-width: 100vw; overflow-x: hidden; }
+    #experience *, #earlier *, #manifesto * { overflow-wrap: break-word; }
+    #experience h2 { font-size: 22px !important; line-height: 1.45 !important; }
+    #experience p, #earlier p { font-size: 13px !important; line-height: 1.8 !important; }
+    #experience h4, #earlier h4 { font-size: 18px !important; line-height: 1.3 !important; }
+    #experience span, #earlier span { line-height: 1.5 !important; }
+    #manifesto h2 { font-size: 24px !important; line-height: 1.45 !important; }
+    /* the fixed nav has no ground of its own, so headings collided with it */
+    nav { background: rgba(244, 242, 236, 0.94); backdrop-filter: blur(10px); }
+    /* the archive's 4-column spans collapse into slivers at this width */
+    [data-archive-grid] { grid-template-columns: 1fr 1fr !important; grid-auto-rows: 168px !important; gap: 12px !important; }
+    [data-archive-grid] > div { grid-column: auto !important; grid-row: auto !important; }
+    [data-archive-grid] > div:nth-child(1) { grid-column: span 2 !important; grid-row: span 2 !important; }
+    [data-archive-grid] > div:nth-child(2) { grid-row: span 2 !important; }
+    [data-archive-grid] > div:nth-child(5) { grid-column: span 2 !important; }
+    [data-archive-grid] h4 { font-size: 16px !important; }
+    [data-archive-grid] p, [data-archive-grid] span { font-size: 10px !important; }
+    [data-archive-grid] > div > div { padding: 14px !important; }
+    #archive > div:first-child { margin-bottom: 40px !important; }
     #experience > div, #earlier > div { flex-direction: column !important; max-width: 100% !important; gap: 48px !important; }
     #experience > div > div, #earlier > div > div { max-width: 100% !important; min-width: 0 !important; flex: 0 1 auto !important; }
     #manifesto, #experience, #earlier, #archive { padding-left: 20px !important; padding-right: 20px !important; }
@@ -249,7 +270,7 @@
     </div>
   </div>
 
-  <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; grid-auto-rows: 300px">
+  <div data-archive-grid="" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; grid-auto-rows: 300px">
     <div data-reveal="" style="grid-column: span 2; grid-row: span 2; position: relative; overflow: hidden">
       <div style="width: 100%; height: 100%; background: #d4d0c5; display: flex; flex-direction: column; justify-content: space-between; padding: 24px; box-sizing: border-box">
         <div style="display: flex; justify-content: space-between; width: 100%; font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; color: #4b5563">
